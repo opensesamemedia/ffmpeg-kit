@@ -509,7 +509,6 @@ ${SED_INLINE} 's/static int av_log_level/__thread int av_log_level/g' "${BASEDIR
   --strip="${STRIP}" \
   --nm="${NM}" \
   --extra-ldflags="$(get_min_version_cflags)" \
-  --disable-autodetect \
   --enable-cross-compile \
   --enable-pic \
   --enable-inline-asm \
@@ -535,7 +534,6 @@ ${SED_INLINE} 's/static int av_log_level/__thread int av_log_level/g' "${BASEDIR
   --disable-txtpages \
   --disable-sndio \
   --disable-schannel \
-  --disable-securetransport \
   --disable-xlib \
   --disable-cuda \
   --disable-cuvid \
@@ -548,6 +546,16 @@ ${SED_INLINE} 's/static int av_log_level/__thread int av_log_level/g' "${BASEDIR
   --disable-nvenc \
   --disable-vaapi \
   --disable-vdpau \
+  --disable-everything \
+  --disable-stripping \
+  --disable-optimizations \
+  --extra-cflags=-O0 \
+  --enable-protocol=srtp,tls,https \
+  --enable-encoder=pcm_f32le,pcm_s16le,libopus,copy,opus,vorbis \
+  --enable-decoder=pcm_f32le,pcm_s16le,libopus,copy,opus,vorbis \
+  --enable-muxer=pcm_f32le,pcm_s16le,rtsp,rtp,ogg,opus \
+  --enable-demuxer=pcm_f32le,pcm_s16le,rtsp,rtp,ogg,opus \
+  --enable-filter=copy,volume,aformat,aresample,arnndn,channelmap,pan,amerge \
   ${CONFIGURE_POSTFIX} 1>>"${BASEDIR}"/build.log 2>&1
 
 if [[ $? -ne 0 ]]; then
